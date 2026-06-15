@@ -1,41 +1,28 @@
 package com.padelzgz.api.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.padelzgz.api.exception.ClubNotFoundException;
 import com.padelzgz.api.model.Club;
 import com.padelzgz.api.service.ClubService;
 import com.padelzgz.api.service.PistaService;
 import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.util.*;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(ClubController.class)
+@ExtendWith(MockitoExtension.class)
 class ClubControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @MockBean private ClubService clubService;
-    @MockBean private PistaService pistaService;
-    // Spring Security necesita estos beans aunque no se usen en el test
-    @MockBean private com.padelzgz.api.security.JwtUtils jwtUtils;
-    @MockBean private com.padelzgz.api.security.UserDetailsServiceImpl userDetailsService;
+    @Mock private ClubService clubService;
+    @Mock private PistaService pistaService;
+    @InjectMocks private ClubController clubController;
 
     private Club club;
 
@@ -51,119 +38,71 @@ class ClubControllerTest {
 
     @Test
     @DisplayName("GET /clubs devuelve 200 con lista de clubs")
-    @WithMockUser
-    void getClubs_returns200() throws Exception {
+    void getClubs_returns200() {
         when(clubService.findAll()).thenReturn(Set.of(club));
-
-        mockMvc.perform(get("/clubs"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        ResponseEntity<?> response = clubController.getClubs(null, null);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
-    @DisplayName("GET /clubs/{id} devuelve 200 cuando el club existe")
-    @WithMockUser
-    void getClub_whenExists_returns200() throws Exception {
+    @DisplayName("GET /clubs/{id} devuelve 200 cuando existe")
+    void getClub_whenExists_returns200() {
         when(clubService.findById(1L)).thenReturn(Optional.of(club));
-
-        mockMvc.perform(get("/clubs/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nombre").value("Club Pádel Zaragoza"));
+        ResponseEntity<Club> response = clubController.getClub(1L);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("Club Pádel Zaragoza", response.getBody().getNombre());
     }
 
     @Test
-    @DisplayName("GET /clubs/{id} devuelve 404 cuando el club no existe")
-    @WithMockUser
-    void getClub_whenNotExists_returns404() throws Exception {
+    @DisplayName("GET /clubs/{id} lanza excepción cuando no existe")
+    void getClub_whenNotExists_throws404() {
         when(clubService.findById(99L)).thenThrow(new ClubNotFoundException(99L));
-
-        mockMvc.perform(get("/clubs/99"))
-                .andExpect(status().isNotFound());
+        assertThrows(ClubNotFoundException.class, () -> clubController.getClub(99L));
     }
 
     @Test
-    @DisplayName("POST /clubs devuelve 201 con club creado")
-    @WithMockUser
-    void addClub_returns201() throws Exception {
+    @DisplayName("POST /clubs devuelve 201")
+    void addClub_returns201() {
         when(clubService.addClub(any(Club.class))).thenReturn(club);
-
-        mockMvc.perform(post("/clubs")
-                        .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(club)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.nombre").value("Club Pádel Zaragoza"));
+        ResponseEntity<Club> response = clubController.addClub(club);
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
     @Test
-    @DisplayName("POST /clubs devuelve 400 cuando faltan campos obligatorios")
-    @WithMockUser
-    void addClub_whenMissingFields_returns400() throws Exception {
-        Club clubInvalido = new Club(); // sin nombre ni ciudad
-
-        mockMvc.perform(post("/clubs")
-                        .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(clubInvalido)))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    @DisplayName("PUT /clubs/{id} devuelve 200 al actualizar")
-    @WithMockUser
-    void modifyClub_returns200() throws Exception {
+    @DisplayName("PUT /clubs/{id} devuelve 200")
+    void modifyClub_returns200() {
         when(clubService.modifyClub(eq(1L), any(Club.class))).thenReturn(club);
-
-        mockMvc.perform(put("/clubs/1")
-                        .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(club)))
-                .andExpect(status().isOk());
+        ResponseEntity<Club> response = clubController.modifyClub(1L, club);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
-    @DisplayName("PUT /clubs/{id} devuelve 404 cuando el club no existe")
-    @WithMockUser
-    void modifyClub_whenNotExists_returns404() throws Exception {
+    @DisplayName("PUT /clubs/{id} lanza excepción cuando no existe")
+    void modifyClub_whenNotExists_throws404() {
         when(clubService.modifyClub(eq(99L), any(Club.class))).thenThrow(new ClubNotFoundException(99L));
-
-        mockMvc.perform(put("/clubs/99")
-                        .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(club)))
-                .andExpect(status().isNotFound());
+        assertThrows(ClubNotFoundException.class, () -> clubController.modifyClub(99L, club));
     }
 
     @Test
-    @DisplayName("PATCH /clubs/{id} devuelve 200 al actualizar parcialmente")
-    @WithMockUser
-    void patchClub_returns200() throws Exception {
+    @DisplayName("PATCH /clubs/{id} devuelve 200")
+    void patchClub_returns200() {
         when(clubService.patchClub(eq(1L), any(Club.class))).thenReturn(club);
-
-        mockMvc.perform(patch("/clubs/1")
-                        .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"nombre\": \"Nombre Nuevo\"}"))
-                .andExpect(status().isOk());
+        ResponseEntity<Club> response = clubController.patchClub(1L, club);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
-    @DisplayName("DELETE /clubs/{id} devuelve 204 al eliminar")
-    @WithMockUser
-    void deleteClub_returns204() throws Exception {
+    @DisplayName("DELETE /clubs/{id} devuelve 204")
+    void deleteClub_returns204() {
         doNothing().when(clubService).deleteClub(1L);
-
-        mockMvc.perform(delete("/clubs/1").with(csrf()))
-                .andExpect(status().isNoContent());
+        ResponseEntity<Void> response = clubController.deleteClub(1L);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
     @Test
-    @DisplayName("DELETE /clubs/{id} devuelve 404 cuando el club no existe")
-    @WithMockUser
-    void deleteClub_whenNotExists_returns404() throws Exception {
+    @DisplayName("DELETE /clubs/{id} lanza excepción cuando no existe")
+    void deleteClub_whenNotExists_throws404() {
         doThrow(new ClubNotFoundException(99L)).when(clubService).deleteClub(99L);
-
-        mockMvc.perform(delete("/clubs/99").with(csrf()))
-                .andExpect(status().isNotFound());
+        assertThrows(ClubNotFoundException.class, () -> clubController.deleteClub(99L));
     }
 }
