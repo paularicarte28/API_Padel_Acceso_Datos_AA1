@@ -8,8 +8,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ClubServiceImpl implements ClubService {
@@ -18,7 +21,7 @@ public class ClubServiceImpl implements ClubService {
     @Autowired private ModelMapper modelMapper;
 
     @Override
-    public Set<Club> findAll() { return clubRepository.findAll().stream().collect(java.util.stream.Collectors.toSet()); }
+    public Set<Club> findAll() { return clubRepository.findAll().stream().collect(Collectors.toSet()); }
 
     @Override
     public Set<Club> findByCiudad(String ciudad) { return clubRepository.findByCiudad(ciudad); }
@@ -46,15 +49,16 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public Club patchClub(long id, Club partialClub) {
+    public Club patchClub(long id, Map<String, Object> fields) {
         Club existing = clubRepository.findById(id).orElseThrow(() -> new ClubNotFoundException(id));
-        if (partialClub.getNombre() != null) existing.setNombre(partialClub.getNombre());
-        if (partialClub.getCiudad() != null) existing.setCiudad(partialClub.getCiudad());
-        if (partialClub.getDireccion() != null) existing.setDireccion(partialClub.getDireccion());
-        if (partialClub.getTelefono() != null) existing.setTelefono(partialClub.getTelefono());
-        if (partialClub.getEmail() != null) existing.setEmail(partialClub.getEmail());
-        if (partialClub.getFechaApertura() != null) existing.setFechaApertura(partialClub.getFechaApertura());
-        existing.setActivo(partialClub.isActivo());
+        if (fields.containsKey("nombre"))       existing.setNombre((String) fields.get("nombre"));
+        if (fields.containsKey("ciudad"))       existing.setCiudad((String) fields.get("ciudad"));
+        if (fields.containsKey("direccion"))    existing.setDireccion((String) fields.get("direccion"));
+        if (fields.containsKey("telefono"))     existing.setTelefono((String) fields.get("telefono"));
+        if (fields.containsKey("email"))        existing.setEmail((String) fields.get("email"));
+        if (fields.containsKey("activo"))       existing.setActivo((Boolean) fields.get("activo"));
+        if (fields.containsKey("fechaApertura"))
+            existing.setFechaApertura(LocalDate.parse(fields.get("fechaApertura").toString()));
         return clubRepository.save(existing);
     }
 

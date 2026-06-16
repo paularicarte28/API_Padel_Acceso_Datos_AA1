@@ -8,8 +8,10 @@ import com.padelzgz.api.service.InscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class InscripcionServiceImpl implements InscripcionService {
@@ -19,7 +21,7 @@ public class InscripcionServiceImpl implements InscripcionService {
     @Autowired private TorneoRepository torneoRepository;
 
     @Override
-    public Set<Inscripcion> findAll() { return inscripcionRepository.findAll().stream().collect(java.util.stream.Collectors.toSet()); }
+    public Set<Inscripcion> findAll() { return inscripcionRepository.findAll().stream().collect(Collectors.toSet()); }
 
     @Override
     public Set<Inscripcion> findByTorneoId(long torneoId) { return inscripcionRepository.findByTorneoId(torneoId); }
@@ -53,7 +55,6 @@ public class InscripcionServiceImpl implements InscripcionService {
         inscripcion.setNotas(dto.getNotas());
         inscripcion.setUsuario(usuario);
         inscripcion.setTorneo(torneo);
-
         return inscripcionRepository.save(inscripcion);
     }
 
@@ -68,11 +69,12 @@ public class InscripcionServiceImpl implements InscripcionService {
     }
 
     @Override
-    public Inscripcion patchInscripcion(long id, Inscripcion partial) {
+    public Inscripcion patchInscripcion(long id, Map<String, Object> fields) {
         Inscripcion existing = inscripcionRepository.findById(id).orElseThrow(() -> new InscripcionNotFoundException(id));
-        if (partial.getEstado() != null) existing.setEstado(partial.getEstado());
-        if (partial.getNotas() != null) existing.setNotas(partial.getNotas());
-        existing.setPagado(partial.isPagado());
+        if (fields.containsKey("estado"))        existing.setEstado((String) fields.get("estado"));
+        if (fields.containsKey("notas"))         existing.setNotas((String) fields.get("notas"));
+        if (fields.containsKey("pagado"))        existing.setPagado((Boolean) fields.get("pagado"));
+        if (fields.containsKey("numeroPareja"))  existing.setNumeroPareja(((Number) fields.get("numeroPareja")).intValue());
         return inscripcionRepository.save(existing);
     }
 

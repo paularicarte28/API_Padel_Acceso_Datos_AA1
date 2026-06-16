@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/pistas")
@@ -81,9 +82,9 @@ public class PistaController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Pista> patchPista(@PathVariable long id, @RequestBody Pista partial) {
+    public ResponseEntity<Pista> patchPista(@PathVariable long id, @RequestBody Map<String, Object> fields) {
         logger.info("PATCH /pistas/{}", id);
-        return ResponseEntity.ok(pistaService.patchPista(id, partial));
+        return ResponseEntity.ok(pistaService.patchPista(id, fields));
     }
 
     @DeleteMapping("/{id}")

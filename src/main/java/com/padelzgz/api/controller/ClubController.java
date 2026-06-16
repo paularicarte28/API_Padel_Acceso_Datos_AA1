@@ -16,6 +16,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -97,9 +98,9 @@ public class ClubController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Club> patchClub(@PathVariable long id, @RequestBody Club partialClub) {
+    public ResponseEntity<Club> patchClub(@PathVariable long id, @RequestBody Map<String, Object> fields) {
         logger.info("PATCH /clubs/{}", id);
-        Club updated = clubService.patchClub(id, partialClub);
+        Club updated = clubService.patchClub(id, fields);
         return ResponseEntity.ok(updated);
     }
 
