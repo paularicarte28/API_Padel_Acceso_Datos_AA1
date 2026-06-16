@@ -1,5 +1,0 @@
-{
-  "priority": 1,
-  "request": { "method": "POST", "url": "/inscripciones", "bodyPatterns": [{ "matchesJsonPath": "$[?(@.torneoId == 99999)]" }] },
-  "response": { "status": 404, "headers": { "Content-Type": "application/json" }, "bodyFileName": "postInscripcion-ko-404.json" }
-}

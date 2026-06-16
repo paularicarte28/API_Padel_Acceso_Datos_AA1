@@ -1,1 +1,0 @@
-{ "code": 400, "message": "Error de validación", "errors": { "puntuacion": "La puntuación máxima es 5" } }

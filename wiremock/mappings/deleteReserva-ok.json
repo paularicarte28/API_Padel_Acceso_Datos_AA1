@@ -1,4 +1,0 @@
-{
-  "request": { "method": "DELETE", "urlPattern": "/reservas/[0-9]+" },
-  "response": { "status": 204 }
-}

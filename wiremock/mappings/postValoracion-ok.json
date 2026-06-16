@@ -1,4 +1,0 @@
-{
-  "request": { "method": "POST", "urlPattern": "/valoraciones/pista/[0-9]+/usuario/[0-9]+" },
-  "response": { "status": 201, "headers": { "Content-Type": "application/json" }, "bodyFileName": "postValoracion-ok.json" }
-}

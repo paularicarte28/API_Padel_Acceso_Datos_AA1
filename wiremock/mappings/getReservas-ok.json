@@ -1,4 +1,0 @@
-{
-  "request": { "method": "GET", "url": "/reservas" },
-  "response": { "status": 200, "headers": { "Content-Type": "application/json" }, "bodyFileName": "getReservas-ok.json" }
-}

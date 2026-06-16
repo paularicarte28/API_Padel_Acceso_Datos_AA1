@@ -1,9 +1,0 @@
-{
-  "priority": 1,
-  "request": { "method": "GET", "url": "/pistas/99999" },
-  "response": {
-    "status": 404,
-    "headers": { "Content-Type": "application/json" },
-    "bodyFileName": "getPista-ko-404.json"
-  }
-}

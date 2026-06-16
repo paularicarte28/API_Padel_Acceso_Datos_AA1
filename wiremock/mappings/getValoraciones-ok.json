@@ -1,4 +1,0 @@
-{
-  "request": { "method": "GET", "url": "/valoraciones" },
-  "response": { "status": 200, "headers": { "Content-Type": "application/json" }, "bodyFileName": "getValoraciones-ok.json" }
-}

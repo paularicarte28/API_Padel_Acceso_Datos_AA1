@@ -1,8 +1,0 @@
-{
-  "code": 400,
-  "message": "Error de validación",
-  "errors": {
-    "nombre": "El nombre es obligatorio",
-    "ciudad": "La ciudad es obligatoria"
-  }
-}

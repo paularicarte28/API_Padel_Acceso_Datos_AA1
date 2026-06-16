@@ -1,5 +1,0 @@
-{
-  "priority": 1,
-  "request": { "method": "POST", "url": "/reservas", "bodyPatterns": [{ "matchesJsonPath": "$[?(@.pistaId == 99999)]" }] },
-  "response": { "status": 404, "headers": { "Content-Type": "application/json" }, "bodyFileName": "postReserva-ko-404.json" }
-}

@@ -1,8 +1,0 @@
-{
-  "request": { "method": "GET", "urlPattern": "/pistas/[0-9]+" },
-  "response": {
-    "status": 200,
-    "headers": { "Content-Type": "application/json" },
-    "bodyFileName": "getPista-ok.json"
-  }
-}
