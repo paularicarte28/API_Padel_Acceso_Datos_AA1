@@ -89,15 +89,12 @@ class PistaServiceTest {
     }
 
     @Test
-    @DisplayName("patchPista actualiza solo campos no nulos/cero")
+    @DisplayName("patchPista actualiza solo campos enviados en el Map")
     void patchPista_updatesOnlyProvidedFields() {
-        Pista partial = new Pista();
-        partial.setTipo("PANORAMICA");
-
         when(pistaRepository.findById(1L)).thenReturn(Optional.of(pista));
         when(pistaRepository.save(pista)).thenReturn(pista);
 
-        pistaService.patchPista(1L, partial);
+        pistaService.patchPista(1L, Map.of("tipo", "PANORAMICA"));
 
         assertEquals("PANORAMICA", pista.getTipo());
         verify(pistaRepository).save(pista);

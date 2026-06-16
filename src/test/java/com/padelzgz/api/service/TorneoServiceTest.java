@@ -85,15 +85,12 @@ class TorneoServiceTest {
     }
 
     @Test
-    @DisplayName("patchTorneo actualiza solo campos no nulos")
+    @DisplayName("patchTorneo actualiza solo campos enviados en el Map")
     void patchTorneo_updatesOnlyNonNullFields() {
-        Torneo partial = new Torneo();
-        partial.setNombre("Torneo Otoño");
-
         when(torneoRepository.findById(1L)).thenReturn(Optional.of(torneo));
         when(torneoRepository.save(torneo)).thenReturn(torneo);
 
-        torneoService.patchTorneo(1L, partial);
+        torneoService.patchTorneo(1L, Map.of("nombre", "Torneo Otoño"));
 
         assertEquals("Torneo Otoño", torneo.getNombre());
         verify(torneoRepository).save(torneo);

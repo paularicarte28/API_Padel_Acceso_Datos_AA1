@@ -100,15 +100,12 @@ class ClubServiceTest {
     }
 
     @Test
-    @DisplayName("patchClub actualiza solo los campos no nulos")
+    @DisplayName("patchClub actualiza solo los campos enviados en el Map")
     void patchClub_updatesOnlyNonNullFields() {
-        Club partial = new Club();
-        partial.setNombre("Nombre Actualizado");
-
         when(clubRepository.findById(1L)).thenReturn(Optional.of(club));
         when(clubRepository.save(club)).thenReturn(club);
 
-        clubService.patchClub(1L, partial);
+        clubService.patchClub(1L, Map.of("nombre", "Nombre Actualizado"));
         assertEquals("Nombre Actualizado", club.getNombre());
         verify(clubRepository).save(club);
     }
