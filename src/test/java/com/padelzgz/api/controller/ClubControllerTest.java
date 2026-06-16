@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -86,8 +87,8 @@ class ClubControllerTest {
     @Test
     @DisplayName("PATCH /clubs/{id} devuelve 200")
     void patchClub_returns200() {
-        when(clubService.patchClub(eq(1L), any(Club.class))).thenReturn(club);
-        ResponseEntity<Club> response = clubController.patchClub(1L, club);
+        when(clubService.patchClub(eq(1L), any(Map.class))).thenReturn(club);
+        ResponseEntity<Club> response = clubController.patchClub(1L, Map.of("nombre", "Club Actualizado"));
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
