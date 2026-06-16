@@ -1,0 +1,5 @@
+{
+  "priority": 1,
+  "request": { "method": "GET", "url": "/reservas/99999" },
+  "response": { "status": 404, "headers": { "Content-Type": "application/json" }, "bodyFileName": "getReserva-ko-404.json" }
+}

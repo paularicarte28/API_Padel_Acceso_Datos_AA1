@@ -1,0 +1,4 @@
+{
+  "request": { "method": "GET", "url": "/torneos" },
+  "response": { "status": 200, "headers": { "Content-Type": "application/json" }, "bodyFileName": "getTorneos-ok.json" }
+}

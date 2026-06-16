@@ -1,0 +1,4 @@
+{
+  "request": { "method": "POST", "urlPattern": "/torneos/club/[0-9]+" },
+  "response": { "status": 201, "headers": { "Content-Type": "application/json" }, "bodyFileName": "postTorneo-ok.json" }
+}

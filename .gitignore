@@ -37,3 +37,6 @@ Thumbs.db
 # Credenciales / configuración local sensible
 application-local.properties
 application-prod.properties
+
+# WireMock JAR
+wiremock/*.jar

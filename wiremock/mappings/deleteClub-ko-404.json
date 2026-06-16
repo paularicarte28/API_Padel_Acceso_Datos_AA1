@@ -1,0 +1,12 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "DELETE",
+    "url": "/clubs/99999"
+  },
+  "response": {
+    "status": 404,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "deleteClub-ko-404.json"
+  }
+}

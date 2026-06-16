@@ -1,0 +1,8 @@
+{
+  "request": { "method": "GET", "urlPattern": "/usuarios/[0-9]+" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "getUsuario-ok.json"
+  }
+}

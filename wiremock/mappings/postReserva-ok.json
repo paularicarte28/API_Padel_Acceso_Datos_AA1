@@ -1,0 +1,4 @@
+{
+  "request": { "method": "POST", "url": "/reservas" },
+  "response": { "status": 201, "headers": { "Content-Type": "application/json" }, "bodyFileName": "postReserva-ok.json" }
+}

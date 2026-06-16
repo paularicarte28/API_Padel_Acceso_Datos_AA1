@@ -1,0 +1,4 @@
+{
+  "request": { "method": "POST", "url": "/inscripciones" },
+  "response": { "status": 201, "headers": { "Content-Type": "application/json" }, "bodyFileName": "postInscripcion-ok.json" }
+}

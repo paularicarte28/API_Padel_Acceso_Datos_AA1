@@ -1,0 +1,4 @@
+{
+  "request": { "method": "GET", "url": "/inscripciones" },
+  "response": { "status": 200, "headers": { "Content-Type": "application/json" }, "bodyFileName": "getInscripciones-ok.json" }
+}

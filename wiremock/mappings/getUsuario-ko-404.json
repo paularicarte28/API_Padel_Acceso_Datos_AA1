@@ -1,0 +1,9 @@
+{
+  "priority": 1,
+  "request": { "method": "GET", "url": "/usuarios/99999" },
+  "response": {
+    "status": 404,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "getUsuario-ko-404.json"
+  }
+}
