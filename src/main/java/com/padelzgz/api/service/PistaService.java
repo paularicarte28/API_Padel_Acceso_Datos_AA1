@@ -1,6 +1,7 @@
 package com.padelzgz.api.service;
 
 import com.padelzgz.api.model.Pista;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ public interface PistaService {
     Optional<Pista> findById(long id);
     Pista addPista(Pista pista, long clubId);
     Pista modifyPista(long id, Pista pista);
-    Pista patchPista(long id, Pista partialPista);
+    Pista patchPista(long id, Map<String, Object> fields);
     void deletePista(long id);
     Set<Pista> findByPrecioHoraBetween(float min, float max);
     Set<Pista> findByPuntuacionMediaMinima(float minPuntuacion);

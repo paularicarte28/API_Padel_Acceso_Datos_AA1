@@ -1,6 +1,7 @@
 package com.padelzgz.api.service;
 
 import com.padelzgz.api.model.Club;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ public interface ClubService {
     Optional<Club> findById(long id);
     Club addClub(Club club);
     Club modifyClub(long id, Club club);
-    Club patchClub(long id, Club partialClub);
+    Club patchClub(long id, Map<String, Object> fields);
     void deleteClub(long id);
     Set<Club> findClubesConMasPistasActivas();
 }

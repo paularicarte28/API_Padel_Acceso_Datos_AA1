@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/reservas")
@@ -75,9 +76,9 @@ public class ReservaController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Reserva> patchReserva(@PathVariable long id, @RequestBody Reserva partial) {
+    public ResponseEntity<Reserva> patchReserva(@PathVariable long id, @RequestBody Map<String, Object> fields) {
         logger.info("PATCH /reservas/{}", id);
-        return ResponseEntity.ok(reservaService.patchReserva(id, partial));
+        return ResponseEntity.ok(reservaService.patchReserva(id, fields));
     }
 
     @DeleteMapping("/{id}")

@@ -2,6 +2,7 @@ package com.padelzgz.api.service;
 
 import com.padelzgz.api.dto.InscripcionInDTO;
 import com.padelzgz.api.model.Inscripcion;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,6 +15,6 @@ public interface InscripcionService {
     Optional<Inscripcion> findById(long id);
     Inscripcion addInscripcion(InscripcionInDTO dto);
     Inscripcion modifyInscripcion(long id, InscripcionInDTO dto);
-    Inscripcion patchInscripcion(long id, Inscripcion partial);
+    Inscripcion patchInscripcion(long id, Map<String, Object> fields);
     void deleteInscripcion(long id);
 }

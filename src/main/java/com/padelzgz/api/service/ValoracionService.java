@@ -1,6 +1,7 @@
 package com.padelzgz.api.service;
 
 import com.padelzgz.api.model.Valoracion;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -13,6 +14,6 @@ public interface ValoracionService {
     Optional<Valoracion> findById(long id);
     Valoracion addValoracion(Valoracion valoracion, long pistaId, long usuarioId);
     Valoracion modifyValoracion(long id, Valoracion valoracion);
-    Valoracion patchValoracion(long id, Valoracion partial);
+    Valoracion patchValoracion(long id, Map<String, Object> fields);
     void deleteValoracion(long id);
 }

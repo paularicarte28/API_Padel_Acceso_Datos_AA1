@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/torneos")
@@ -63,8 +64,9 @@ public class TorneoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Torneo> patchTorneo(@PathVariable long id, @RequestBody Torneo partial) {
-        return ResponseEntity.ok(torneoService.patchTorneo(id, partial));
+    public ResponseEntity<Torneo> patchTorneo(@PathVariable long id, @RequestBody Map<String, Object> fields) {
+        logger.info("PATCH /torneos/{}", id);
+        return ResponseEntity.ok(torneoService.patchTorneo(id, fields));
     }
 
     @DeleteMapping("/{id}")
