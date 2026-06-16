@@ -3,6 +3,7 @@ package com.padelzgz.api.service;
 import com.padelzgz.api.dto.ReservaInDTO;
 import com.padelzgz.api.model.Reserva;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -16,6 +17,6 @@ public interface ReservaService {
     Optional<Reserva> findById(long id);
     Reserva addReserva(ReservaInDTO dto);
     Reserva modifyReserva(long id, ReservaInDTO dto);
-    Reserva patchReserva(long id, Reserva partial);
+    Reserva patchReserva(long id, Map<String, Object> fields);
     void deleteReserva(long id);
 }

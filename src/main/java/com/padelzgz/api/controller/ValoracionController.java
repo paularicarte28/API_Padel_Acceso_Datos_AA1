@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/valoraciones")
@@ -74,9 +75,9 @@ public class ValoracionController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<Valoracion> patchValoracion(@PathVariable long id,
-                                                       @RequestBody Valoracion partial) {
+                                                       @RequestBody Map<String, Object> fields) {
         logger.info("PATCH /valoraciones/{}", id);
-        return ResponseEntity.ok(valoracionService.patchValoracion(id, partial));
+        return ResponseEntity.ok(valoracionService.patchValoracion(id, fields));
     }
 
     @DeleteMapping("/{id}")

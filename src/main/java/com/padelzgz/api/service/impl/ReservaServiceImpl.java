@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservaServiceImpl implements ReservaService {
@@ -21,7 +23,7 @@ public class ReservaServiceImpl implements ReservaService {
     @Autowired private UsuarioRepository usuarioRepository;
 
     @Override
-    public Set<Reserva> findAll() { return reservaRepository.findAll().stream().collect(java.util.stream.Collectors.toSet()); }
+    public Set<Reserva> findAll() { return reservaRepository.findAll().stream().collect(Collectors.toSet()); }
 
     @Override
     public Set<Reserva> findByFecha(LocalDate fecha) { return reservaRepository.findByFecha(fecha); }
@@ -59,7 +61,6 @@ public class ReservaServiceImpl implements ReservaService {
         reserva.setComentario(dto.getComentario());
         reserva.setPista(pista);
         reserva.setUsuario(usuario);
-
         return reservaRepository.save(reserva);
     }
 
@@ -79,16 +80,18 @@ public class ReservaServiceImpl implements ReservaService {
         existing.setComentario(dto.getComentario());
         existing.setPista(pista);
         existing.setUsuario(usuario);
-
         return reservaRepository.save(existing);
     }
 
     @Override
-    public Reserva patchReserva(long id, Reserva partial) {
+    public Reserva patchReserva(long id, Map<String, Object> fields) {
         Reserva existing = reservaRepository.findById(id).orElseThrow(() -> new ReservaNotFoundException(id));
-        if (partial.getComentario() != null) existing.setComentario(partial.getComentario());
-        if (partial.getPrecio() > 0) existing.setPrecio(partial.getPrecio());
-        existing.setPagado(partial.isPagado());
+        if (fields.containsKey("comentario")) existing.setComentario((String) fields.get("comentario"));
+        if (fields.containsKey("precio"))     existing.setPrecio(((Number) fields.get("precio")).floatValue());
+        if (fields.containsKey("pagado"))     existing.setPagado((Boolean) fields.get("pagado"));
+        if (fields.containsKey("fecha"))      existing.setFecha(LocalDate.parse(fields.get("fecha").toString()));
+        if (fields.containsKey("horaInicio")) existing.setHoraInicio(LocalTime.parse(fields.get("horaInicio").toString()));
+        if (fields.containsKey("horaFin"))    existing.setHoraFin(LocalTime.parse(fields.get("horaFin").toString()));
         return reservaRepository.save(existing);
     }
 

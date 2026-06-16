@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -60,14 +61,14 @@ public class PistaServiceImpl implements PistaService {
     }
 
     @Override
-    public Pista patchPista(long id, Pista partial) {
+    public Pista patchPista(long id, Map<String, Object> fields) {
         Pista existing = pistaRepository.findById(id).orElseThrow(() -> new PistaNotFoundException(id));
-        if (partial.getTipo() != null) existing.setTipo(partial.getTipo());
-        if (partial.getSuperficie() != null) existing.setSuperficie(partial.getSuperficie());
-        if (partial.getPrecioHora() > 0) existing.setPrecioHora(partial.getPrecioHora());
-        if (partial.getNumero() > 0) existing.setNumero(partial.getNumero());
-        existing.setInterior(partial.isInterior());
-        existing.setActiva(partial.isActiva());
+        if (fields.containsKey("tipo"))       existing.setTipo((String) fields.get("tipo"));
+        if (fields.containsKey("superficie")) existing.setSuperficie((String) fields.get("superficie"));
+        if (fields.containsKey("numero"))     existing.setNumero(((Number) fields.get("numero")).intValue());
+        if (fields.containsKey("precioHora")) existing.setPrecioHora(((Number) fields.get("precioHora")).floatValue());
+        if (fields.containsKey("interior"))   existing.setInterior((Boolean) fields.get("interior"));
+        if (fields.containsKey("activa"))     existing.setActiva((Boolean) fields.get("activa"));
         return pistaRepository.save(existing);
     }
 
@@ -86,7 +87,7 @@ public class PistaServiceImpl implements PistaService {
     public Set<Pista> findByPuntuacionMediaMinima(float minPuntuacion) {
         Set<Long> ids = pistaRepository.findIdsByPuntuacionMediaMinima(minPuntuacion);
         return ids.stream()
-                .map(id -> pistaRepository.findById(id).orElse(null))
+                .map(i -> pistaRepository.findById(i).orElse(null))
                 .filter(p -> p != null)
                 .collect(Collectors.toSet());
     }

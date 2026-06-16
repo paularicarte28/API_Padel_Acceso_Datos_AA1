@@ -2,6 +2,7 @@ package com.padelzgz.api.service;
 
 import com.padelzgz.api.model.Torneo;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -14,6 +15,6 @@ public interface TorneoService {
     Optional<Torneo> findById(long id);
     Torneo addTorneo(Torneo torneo, long clubId);
     Torneo modifyTorneo(long id, Torneo torneo);
-    Torneo patchTorneo(long id, Torneo partial);
+    Torneo patchTorneo(long id, Map<String, Object> fields);
     void deleteTorneo(long id);
 }

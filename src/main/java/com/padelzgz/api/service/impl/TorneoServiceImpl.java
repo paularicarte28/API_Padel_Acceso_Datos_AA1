@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class TorneoServiceImpl implements TorneoService {
@@ -20,7 +22,7 @@ public class TorneoServiceImpl implements TorneoService {
     @Autowired private ModelMapper modelMapper;
 
     @Override
-    public Set<Torneo> findAll() { return torneoRepository.findAll().stream().collect(java.util.stream.Collectors.toSet()); }
+    public Set<Torneo> findAll() { return torneoRepository.findAll().stream().collect(Collectors.toSet()); }
 
     @Override
     public Set<Torneo> findByInscripcionAbierta(boolean abierta) { return torneoRepository.findByInscripcionAbierta(abierta); }
@@ -59,13 +61,14 @@ public class TorneoServiceImpl implements TorneoService {
     }
 
     @Override
-    public Torneo patchTorneo(long id, Torneo partial) {
+    public Torneo patchTorneo(long id, Map<String, Object> fields) {
         Torneo existing = torneoRepository.findById(id).orElseThrow(() -> new TorneoNotFoundException(id));
-        if (partial.getNombre() != null) existing.setNombre(partial.getNombre());
-        if (partial.getDescripcion() != null) existing.setDescripcion(partial.getDescripcion());
-        if (partial.getFechaFin() != null) existing.setFechaFin(partial.getFechaFin());
-        if (partial.getMaxParticipantes() > 0) existing.setMaxParticipantes(partial.getMaxParticipantes());
-        existing.setInscripcionAbierta(partial.isInscripcionAbierta());
+        if (fields.containsKey("nombre"))              existing.setNombre((String) fields.get("nombre"));
+        if (fields.containsKey("descripcion"))         existing.setDescripcion((String) fields.get("descripcion"));
+        if (fields.containsKey("fechaFin"))            existing.setFechaFin(LocalDate.parse(fields.get("fechaFin").toString()));
+        if (fields.containsKey("maxParticipantes"))    existing.setMaxParticipantes(((Number) fields.get("maxParticipantes")).intValue());
+        if (fields.containsKey("inscripcionAbierta"))  existing.setInscripcionAbierta((Boolean) fields.get("inscripcionAbierta"));
+        if (fields.containsKey("precioInscripcion"))   existing.setPrecioInscripcion(((Number) fields.get("precioInscripcion")).floatValue());
         return torneoRepository.save(existing);
     }
 

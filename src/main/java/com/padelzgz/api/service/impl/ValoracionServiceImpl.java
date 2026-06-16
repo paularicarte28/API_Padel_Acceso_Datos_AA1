@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ValoracionServiceImpl implements ValoracionService {
@@ -21,7 +23,7 @@ public class ValoracionServiceImpl implements ValoracionService {
     @Autowired private ModelMapper modelMapper;
 
     @Override
-    public Set<Valoracion> findAll() { return valoracionRepository.findAll().stream().collect(java.util.stream.Collectors.toSet()); }
+    public Set<Valoracion> findAll() { return valoracionRepository.findAll().stream().collect(Collectors.toSet()); }
 
     @Override
     public Set<Valoracion> findByPistaId(long pistaId) { return valoracionRepository.findByPistaId(pistaId); }
@@ -63,12 +65,12 @@ public class ValoracionServiceImpl implements ValoracionService {
     }
 
     @Override
-    public Valoracion patchValoracion(long id, Valoracion partial) {
+    public Valoracion patchValoracion(long id, Map<String, Object> fields) {
         Valoracion existing = valoracionRepository.findById(id).orElseThrow(() -> new ValoracionNotFoundException(id));
-        if (partial.getPuntuacion() > 0) existing.setPuntuacion(partial.getPuntuacion());
-        if (partial.getComentario() != null) existing.setComentario(partial.getComentario());
-        if (partial.getVisibilidad() != null) existing.setVisibilidad(partial.getVisibilidad());
-        existing.setVerificada(partial.isVerificada());
+        if (fields.containsKey("puntuacion"))  existing.setPuntuacion(((Number) fields.get("puntuacion")).intValue());
+        if (fields.containsKey("comentario"))  existing.setComentario((String) fields.get("comentario"));
+        if (fields.containsKey("visibilidad")) existing.setVisibilidad((String) fields.get("visibilidad"));
+        if (fields.containsKey("verificada"))  existing.setVerificada((Boolean) fields.get("verificada"));
         return valoracionRepository.save(existing);
     }
 
