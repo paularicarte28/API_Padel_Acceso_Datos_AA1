@@ -53,10 +53,12 @@ public class PistaServiceImpl implements PistaService {
     @Override
     public Pista modifyPista(long id, Pista newPista) {
         Pista existing = pistaRepository.findById(id).orElseThrow(() -> new PistaNotFoundException(id));
-        Club club = existing.getClub();
-        modelMapper.map(newPista, existing);
-        existing.setId(id);
-        existing.setClub(club);
+        existing.setNumero(newPista.getNumero());
+        existing.setTipo(newPista.getTipo());
+        existing.setInterior(newPista.isInterior());
+        existing.setPrecioHora(newPista.getPrecioHora());
+        existing.setActiva(newPista.isActiva());
+        existing.setSuperficie(newPista.getSuperficie());
         return pistaRepository.save(existing);
     }
 

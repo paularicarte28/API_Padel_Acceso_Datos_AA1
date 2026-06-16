@@ -55,12 +55,12 @@ public class ValoracionServiceImpl implements ValoracionService {
     @Override
     public Valoracion modifyValoracion(long id, Valoracion newValoracion) {
         Valoracion existing = valoracionRepository.findById(id).orElseThrow(() -> new ValoracionNotFoundException(id));
-        Pista pista = existing.getPista();
-        Usuario usuario = existing.getUsuario();
-        modelMapper.map(newValoracion, existing);
-        existing.setId(id);
-        existing.setPista(pista);
-        existing.setUsuario(usuario);
+        existing.setPuntuacion(newValoracion.getPuntuacion());
+        existing.setComentario(newValoracion.getComentario());
+        existing.setFechaValoracion(newValoracion.getFechaValoracion());
+        existing.setVerificada(newValoracion.isVerificada());
+        existing.setVisibilidad(newValoracion.getVisibilidad());
+        existing.setUtilCount(newValoracion.getUtilCount());
         return valoracionRepository.save(existing);
     }
 
