@@ -49,6 +49,46 @@
     {
       "key": "notFoundId",
       "value": "99999"
+    },
+    {
+      "key": "dynEmailAuth",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "dynEmailUsr",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "dynEmailClub",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "dynEmailPst",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "dynEmailRsv",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "dynEmailTrn",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "dynEmailIns",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "dynEmailVal",
+      "value": "",
+      "type": "string"
     }
   ],
   "item": [
@@ -63,7 +103,7 @@
               "script": {
                 "exec": [
                   "const tsauth = Date.now();",
-                  "pm.collectionVariables.set(\"dynEmail\", `user_auth_${tsauth}@padelzgz.com`);"
+                  "pm.collectionVariables.set(\"dynEmailAuth\", `user_auth_${tsauth}@padelzgz.com`);"
                 ],
                 "type": "text/javascript"
               }
@@ -97,7 +137,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
+              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmailAuth}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
             }
           }
         },
@@ -134,7 +174,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\"\n}"
+              "raw": "{\n  \"email\": \"{{dynEmailAuth}}\",\n  \"password\": \"miPassword123\"\n}"
             }
           }
         },
@@ -189,7 +229,7 @@
               "script": {
                 "exec": [
                   "const tsusr = Date.now();",
-                  "pm.collectionVariables.set(\"dynEmail\", `user_usr_${tsusr}@padelzgz.com`);"
+                  "pm.collectionVariables.set(\"dynEmailUsr\", `user_usr_${tsusr}@padelzgz.com`);"
                 ],
                 "type": "text/javascript"
               }
@@ -223,7 +263,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
+              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmailUsr}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
             }
           }
         },
@@ -260,7 +300,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\"\n}"
+              "raw": "{\n  \"email\": \"{{dynEmailUsr}}\",\n  \"password\": \"miPassword123\"\n}"
             }
           }
         },
@@ -436,7 +476,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte García\",\n  \"email\": \"{{dynEmail}}\",\n  \"nivel\": \"COMPETICION\"\n}"
+              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte García\",\n  \"email\": \"{{dynEmailUsr}}\",\n  \"nivel\": \"COMPETICION\"\n}"
             }
           }
         },
@@ -646,7 +686,7 @@
               "script": {
                 "exec": [
                   "const tsclub = Date.now();",
-                  "pm.collectionVariables.set(\"dynEmail\", `user_club_${tsclub}@padelzgz.com`);"
+                  "pm.collectionVariables.set(\"dynEmailClub\", `user_club_${tsclub}@padelzgz.com`);"
                 ],
                 "type": "text/javascript"
               }
@@ -680,7 +720,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
+              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmailClub}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
             }
           }
         },
@@ -717,7 +757,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\"\n}"
+              "raw": "{\n  \"email\": \"{{dynEmailClub}}\",\n  \"password\": \"miPassword123\"\n}"
             }
           }
         },
@@ -1154,7 +1194,7 @@
               "script": {
                 "exec": [
                   "const tspst = Date.now();",
-                  "pm.collectionVariables.set(\"dynEmail\", `user_pst_${tspst}@padelzgz.com`);"
+                  "pm.collectionVariables.set(\"dynEmailPst\", `user_pst_${tspst}@padelzgz.com`);"
                 ],
                 "type": "text/javascript"
               }
@@ -1188,7 +1228,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
+              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmailPst}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
             }
           }
         },
@@ -1225,7 +1265,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\"\n}"
+              "raw": "{\n  \"email\": \"{{dynEmailPst}}\",\n  \"password\": \"miPassword123\"\n}"
             }
           }
         },
@@ -1663,7 +1703,7 @@
               "script": {
                 "exec": [
                   "const tsrsv = Date.now();",
-                  "pm.collectionVariables.set(\"dynEmail\", `user_rsv_${tsrsv}@padelzgz.com`);"
+                  "pm.collectionVariables.set(\"dynEmailRsv\", `user_rsv_${tsrsv}@padelzgz.com`);"
                 ],
                 "type": "text/javascript"
               }
@@ -1697,7 +1737,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
+              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmailRsv}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
             }
           }
         },
@@ -1734,7 +1774,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\"\n}"
+              "raw": "{\n  \"email\": \"{{dynEmailRsv}}\",\n  \"password\": \"miPassword123\"\n}"
             }
           }
         },
@@ -2248,7 +2288,7 @@
               "script": {
                 "exec": [
                   "const tstrn = Date.now();",
-                  "pm.collectionVariables.set(\"dynEmail\", `user_trn_${tstrn}@padelzgz.com`);"
+                  "pm.collectionVariables.set(\"dynEmailTrn\", `user_trn_${tstrn}@padelzgz.com`);"
                 ],
                 "type": "text/javascript"
               }
@@ -2282,7 +2322,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
+              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmailTrn}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
             }
           }
         },
@@ -2319,7 +2359,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\"\n}"
+              "raw": "{\n  \"email\": \"{{dynEmailTrn}}\",\n  \"password\": \"miPassword123\"\n}"
             }
           }
         },
@@ -2699,7 +2739,7 @@
               "script": {
                 "exec": [
                   "const tsins = Date.now();",
-                  "pm.collectionVariables.set(\"dynEmail\", `user_ins_${tsins}@padelzgz.com`);"
+                  "pm.collectionVariables.set(\"dynEmailIns\", `user_ins_${tsins}@padelzgz.com`);"
                 ],
                 "type": "text/javascript"
               }
@@ -2733,7 +2773,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
+              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmailIns}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
             }
           }
         },
@@ -2770,7 +2810,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\"\n}"
+              "raw": "{\n  \"email\": \"{{dynEmailIns}}\",\n  \"password\": \"miPassword123\"\n}"
             }
           }
         },
@@ -3208,7 +3248,7 @@
               "script": {
                 "exec": [
                   "const tsval = Date.now();",
-                  "pm.collectionVariables.set(\"dynEmail\", `user_val_${tsval}@padelzgz.com`);"
+                  "pm.collectionVariables.set(\"dynEmailVal\", `user_val_${tsval}@padelzgz.com`);"
                 ],
                 "type": "text/javascript"
               }
@@ -3242,7 +3282,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
+              "raw": "{\n  \"nombre\": \"Pau\",\n  \"apellidos\": \"Ricarte\",\n  \"email\": \"{{dynEmailVal}}\",\n  \"password\": \"miPassword123\",\n  \"nivel\": \"AVANZADO\"\n}"
             }
           }
         },
@@ -3279,7 +3319,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"{{dynEmail}}\",\n  \"password\": \"miPassword123\"\n}"
+              "raw": "{\n  \"email\": \"{{dynEmailVal}}\",\n  \"password\": \"miPassword123\"\n}"
             }
           }
         },
