@@ -72,12 +72,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 201) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.id) {",
-                  "        pm.collectionVariables.set(\"usuarioId\", json.id);",
-                  "    }",
-                  "}"
+                  "pm.collectionVariables.set(\"usuarioId\", pm.response.json().id);"
                 ],
                 "type": "text/javascript"
               }
@@ -113,15 +108,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.token) {",
-                  "        pm.collectionVariables.set(\"token\", json.token);",
-                  "    }",
-                  "}",
-                  "pm.test(\"Login exitoso (200)\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
+                  "pm.collectionVariables.set(\"token\", pm.response.json().token);"
                 ],
                 "type": "text/javascript"
               }
@@ -211,12 +198,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 201) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.id) {",
-                  "        pm.collectionVariables.set(\"usuarioId\", json.id);",
-                  "    }",
-                  "}"
+                  "pm.collectionVariables.set(\"usuarioId\", pm.response.json().id);"
                 ],
                 "type": "text/javascript"
               }
@@ -252,15 +234,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.token) {",
-                  "        pm.collectionVariables.set(\"token\", json.token);",
-                  "    }",
-                  "}",
-                  "pm.test(\"Login exitoso (200)\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
+                  "pm.collectionVariables.set(\"token\", pm.response.json().token);"
                 ],
                 "type": "text/javascript"
               }
@@ -681,12 +655,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 201) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.id) {",
-                  "        pm.collectionVariables.set(\"usuarioId\", json.id);",
-                  "    }",
-                  "}"
+                  "pm.collectionVariables.set(\"usuarioId\", pm.response.json().id);"
                 ],
                 "type": "text/javascript"
               }
@@ -722,15 +691,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.token) {",
-                  "        pm.collectionVariables.set(\"token\", json.token);",
-                  "    }",
-                  "}",
-                  "pm.test(\"Login exitoso (200)\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
+                  "pm.collectionVariables.set(\"token\", pm.response.json().token);"
                 ],
                 "type": "text/javascript"
               }
@@ -1202,12 +1163,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 201) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.id) {",
-                  "        pm.collectionVariables.set(\"usuarioId\", json.id);",
-                  "    }",
-                  "}"
+                  "pm.collectionVariables.set(\"usuarioId\", pm.response.json().id);"
                 ],
                 "type": "text/javascript"
               }
@@ -1243,15 +1199,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.token) {",
-                  "        pm.collectionVariables.set(\"token\", json.token);",
-                  "    }",
-                  "}",
-                  "pm.test(\"Login exitoso (200)\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
+                  "pm.collectionVariables.set(\"token\", pm.response.json().token);"
                 ],
                 "type": "text/javascript"
               }
@@ -1724,12 +1672,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 201) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.id) {",
-                  "        pm.collectionVariables.set(\"usuarioId\", json.id);",
-                  "    }",
-                  "}"
+                  "pm.collectionVariables.set(\"usuarioId\", pm.response.json().id);"
                 ],
                 "type": "text/javascript"
               }
@@ -1765,15 +1708,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.token) {",
-                  "        pm.collectionVariables.set(\"token\", json.token);",
-                  "    }",
-                  "}",
-                  "pm.test(\"Login exitoso (200)\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
+                  "pm.collectionVariables.set(\"token\", pm.response.json().token);"
                 ],
                 "type": "text/javascript"
               }
@@ -2322,12 +2257,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 201) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.id) {",
-                  "        pm.collectionVariables.set(\"usuarioId\", json.id);",
-                  "    }",
-                  "}"
+                  "pm.collectionVariables.set(\"usuarioId\", pm.response.json().id);"
                 ],
                 "type": "text/javascript"
               }
@@ -2363,15 +2293,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.token) {",
-                  "        pm.collectionVariables.set(\"token\", json.token);",
-                  "    }",
-                  "}",
-                  "pm.test(\"Login exitoso (200)\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
+                  "pm.collectionVariables.set(\"token\", pm.response.json().token);"
                 ],
                 "type": "text/javascript"
               }
@@ -2786,12 +2708,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 201) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.id) {",
-                  "        pm.collectionVariables.set(\"usuarioId\", json.id);",
-                  "    }",
-                  "}"
+                  "pm.collectionVariables.set(\"usuarioId\", pm.response.json().id);"
                 ],
                 "type": "text/javascript"
               }
@@ -2827,15 +2744,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.token) {",
-                  "        pm.collectionVariables.set(\"token\", json.token);",
-                  "    }",
-                  "}",
-                  "pm.test(\"Login exitoso (200)\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
+                  "pm.collectionVariables.set(\"token\", pm.response.json().token);"
                 ],
                 "type": "text/javascript"
               }
@@ -3308,12 +3217,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 201) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.id) {",
-                  "        pm.collectionVariables.set(\"usuarioId\", json.id);",
-                  "    }",
-                  "}"
+                  "pm.collectionVariables.set(\"usuarioId\", pm.response.json().id);"
                 ],
                 "type": "text/javascript"
               }
@@ -3349,15 +3253,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    if (json.token) {",
-                  "        pm.collectionVariables.set(\"token\", json.token);",
-                  "    }",
-                  "}",
-                  "pm.test(\"Login exitoso (200)\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});"
+                  "pm.collectionVariables.set(\"token\", pm.response.json().token);"
                 ],
                 "type": "text/javascript"
               }
